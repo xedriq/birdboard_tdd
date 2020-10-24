@@ -45,6 +45,13 @@
         </div>
         <div class="lg:w-1/4 px-3">
                 @include('projects.partials._card')
+                <div class="card mt-3">
+                    <ul class="text-xs">
+                        @foreach ($project->activity as $activity)
+                            <li class="{{ $loop->last ?: 'mb-1' }}">{{ $activity->description }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 {{-- <h1>{{ $project->title }}</h1>
                 <p>{{ $project->description }}</p>
                 <a href="/projects">Go Back</a> --}}

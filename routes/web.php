@@ -10,9 +10,7 @@
 |
 */
 
-use App\Project;
-
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 });
 

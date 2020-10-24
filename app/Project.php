@@ -30,7 +30,7 @@ class Project extends Model
 
     public function activity()
     {
-        return $this->hasMany('App\Activity');
+        return $this->hasMany('App\Activity')->latest();
     }
 
     public function recordActivity($description)
