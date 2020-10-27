@@ -35,7 +35,12 @@ class TriggerActivityTest extends TestCase
         $project = ProjectFactory::create();
         $project->addTask('Some task');
         $this->assertCount(2, $project->activity);
-        $this->assertEquals('created_task', $project->activity->last()->description);
+        // $this->assertEquals('created_task', $project->activity->last()->description);
+        tap($project->activity->last(), function($activity){
+            $this->assertEquals('created_task', $activity->description);
+            $this->assertInstanceOf('App\Task', $activity->subject);
+            $this->assertEquals('Some task', $activity->subject->body);
+        });
     }
 
     /** @test */

@@ -35,4 +35,17 @@ class Task extends Model
     {
         return '/projects/' . $this->project->id . '/tasks/' . $this->id;
     }
+
+    public function activity()
+    {
+        return $this->morphMany('App\Activity', 'subject')->latest();
+    }
+
+    public function recordActivity($description)
+    {
+        $this->activity()->create([
+            'project_id' => $this->project_id,
+            'description' => $description
+        ]);
+    }
 }
